@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>El Gran Pollo Loco | Una locura de sabor</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg/jpg" href="c:\Users\jdani\OneDrive\Pictures\Imagenes PL\LOGO.jpg">
+
+    <style>
+
+        /* =========================================
+           CONFIGURACIÓN GENERAL
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #fffdf3;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =========================================
+           BARRA DE NAVEGACIÓN
+        ========================================= */
+
+        nav {
+            width: 100%;
+            background: #16803c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .logo h2 {
+            color: white;
+            font-size: 21px;
+        }
+
+        .logo span {
+            color: #ffd600;
+        }
+
+
+        /* =========================================
+           MENÚ DE NAVEGACIÓN
+        ========================================= */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd600;
+        }
+
+
+        /* =========================================
+           BOTÓN PEDIDOSYA
+        ========================================= */
+
+        .btn-pedido {
+            background: #ffd600;
+            color: #16803c !important;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-pedido:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(12, 103, 45, 0.88),
+                    rgba(22, 128, 60, 0.90)
+                );
+        }
+
+        .hero-contenido {
+            max-width: 900px;
+            color: white;
+        }
+
+        .hero-logo {
+            width: 210px;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: white;
+            padding: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #ffd600;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn-principal {
+            display: inline-block;
+            background: #ffd600;
+            color: #16803c;
+            padding: 16px 30px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-principal:hover {
+            background: white;
+            transform: scale(1.06);
+        }
+
+
+        /* =========================================
+           SECCIONES
+        ========================================= */
+
+        section {
+            padding: 80px 8%;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            color: #16803c;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+
+        /* =========================================
+           BIENVENIDA
+        ========================================= */
+
+        .bienvenida {
+            background: white;
+            text-align: center;
+        }
+
+        .bienvenida-contenido {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .bienvenida p {
+            font-size: 19px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+
+        /* =========================================
+           MENÚ
+        ========================================= */
+
+        .menu {
+            background: #fffdf3;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .producto {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+            transition: 0.3s;
+        }
+
+        .producto:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        .producto-imagen {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .producto-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .producto:hover img {
+            transform: scale(1.08);
+        }
+
+        .producto-info {
+            padding: 22px;
+        }
+
+        .producto-info h3 {
+            color: #16803c;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .producto-info p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .precio {
+            color: #f28c00;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+
+        /* =========================================
+           BOTÓN VER PEDIDOSYA
+        ========================================= */
+
+        .btn-menu {
+            display: inline-block;
+            margin-top: 15px;
+            background: #16803c;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-menu:hover {
+            background: #ffd600;
+            color: #16803c;
+        }
+
+
+        /* =========================================
+           SECCIÓN PEDIDOSYA
+        ========================================= */
+
+        .pedidos {
+            background:
+                linear-gradient(
+                    135deg,
+                    #16803c,
+                    #0d682f
+                );
+
+            color: white;
+            text-align: center;
+        }
+
+        .pedidos-contenido {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .pedidos h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .pedidos p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-pedidosya {
+            display: inline-block;
+            background: #ffd600;
+            color: #16803c;
+            padding: 17px 35px;
+            border-radius: 35px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-pedidosya:hover {
+            background: white;
+            transform: scale(1.06);
+        }
+
+
+        /* =========================================
+           UBICACIÓN
+        ========================================= */
+
+        .ubicacion {
+            background: white;
+        }
+
+        .ubicacion-contenido {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .mapa {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-ubicacion h3 {
+            color: #16803c;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .info-ubicacion p {
+            margin-bottom: 15px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .btn-mapa {
+            display: inline-block;
+            margin-top: 15px;
+            background: #16803c;
+            color: white;
+            padding: 13px 22px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-mapa:hover {
+            background: #ffd600;
+            color: #16803c;
+        }
+
+
+        /* =========================================
+           CONTACTO
+        ========================================= */
+
+        .contacto {
+            background: #fffdf3;
+            text-align: center;
+        }
+
+        .contacto-contenido {
+            max-width: 900px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contacto-card {
+            background: white;
+            padding: 30px;
+            width: 260px;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contacto-card h3 {
+            color: #16803c;
+            margin-bottom: 12px;
+        }
+
+        .contacto-card p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+            background: #116b33;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: white;
+            margin-bottom: 15px;
+        }
+
+        footer h3 {
+            color: #ffd600;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE - CELULARES
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ubicacion-contenido {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .hero-logo {
+                width: 160px;
+                height: 160px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .titulo-seccion {
+                font-size: 32px;
+            }
+
+            .pedidos h2 {
+                font-size: 32px;
+            }
+
+            .mapa {
+                height: 300px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVEGACIÓN
+    ========================================== -->
+
+    <nav>
+
+        <div class="logo">
+
+            <img
+                src="imagenes/LOGO.jpg"
+                alt="Logo El Gran Pollo Loco">
+
+            <h2>
+                El Gran <span>Pollo Loco</span>
+            </h2>
+
+        </div>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#inicio">Inicio</a>
+            </li>
+
+            <li>
+                <a href="#menu">Menú</a>
+            </li>
+
+            <li>
+                <a href="#ubicacion">Ubicación</a>
+            </li>
+
+            <li>
+                <a href="#contacto">Contacto</a>
+            </li>
+
+            <!--
+                IMPORTANTE:
+                Aquí colocaremos el enlace DIRECTO
+                de PedidosYa del restaurante.
+            -->
+
+            <li>
+                <a
+                    href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                    target="_blank"
+                    class="btn-pedido">
+
+                    🍗 Pedir en PedidosYa
+
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         INICIO / HERO
+    ========================================== -->
+
+    <section class="hero" id="inicio">
+
+        <div class="hero-contenido">
+
+            <img
+                class="hero-logo"
+                src="imagenes/LOGO.jpg"
+                alt="El Gran Pollo Loco">
+
+            <h1>
+                ¡Una <span>locura</span> de sabor!
+            </h1>
+
+            <h2>
+                El Gran Pollo Loco
+            </h2>
+
+            <p>
+                El sabor que te vuelve loco por más.
+                Disfruta nuestros deliciosos platillos
+                y vive una verdadera locura de sabor.
+            </p>
+
+
+            <a
+                href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                target="_blank"
+                class="btn-principal">
+
+                🍗 Pide tu pedido en PedidosYa
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         BIENVENIDA
+    ========================================== -->
+
+    <section class="bienvenida">
+
+        <div class="bienvenida-contenido">
+
+            <h2 class="titulo-seccion">
+                Bienvenidos a El Gran Pollo Loco
+            </h2>
+
+            <p class="subtitulo">
+                ¡Donde cada bocado es una locura de sabor!
+            </p>
+
+            <p>
+
+                En <strong>El Gran Pollo Loco</strong>
+                nos encanta preparar comida deliciosa
+                para compartir con familia y amigos.
+
+                Nuestro objetivo es ofrecerte platillos
+                llenos de sabor y una experiencia que
+                quieras repetir.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         MENÚ
+    ========================================== -->
+
+    <section class="menu" id="menu">
+
+        <h2 class="titulo-seccion">
+            Nuestro Menú 🍗
+        </h2>
+
+        <p class="subtitulo">
+            Conoce algunos de nuestros platillos favoritos
+        </p>
+
+
+        <div class="menu-grid">
+
+
+            <!-- PRODUCTO 1 -->
+
+            <div class="producto">
+
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=900&q=80"
+                        alt="Pollo frito">
+
+                </div>
+
+                <div class="producto-info">
+
+                    <h3>
+                        Pollo Frito
+                    </h3>
+
+                    <p>
+                        Crujiente por fuera,
+                        jugoso y lleno de sabor.
+                    </p>
+
+                    <div class="precio">
+                        Q45.00
+                    </div>
+
+                    <a
+                        href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                        target="_blank"
+                        class="btn-menu">
+
+                        Pedir en PedidosYa
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCTO 2 -->
+
+            <div class="producto">
+
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=900&q=80"
+                        alt="Alitas de pollo">
+
+                </div>
+
+                <div class="producto-info">
+
+                    <h3>
+                        Alitas de Pollo
+                    </h3>
+
+                    <p>
+                        Deliciosas alitas acompañadas
+                        de nuestra salsa especial.
+                    </p>
+
+                    <div class="precio">
+                        Q40.00
+                    </div>
+
+                    <a
+                        href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                        target="_blank"
+                        class="btn-menu">
+
+                        Pedir en PedidosYa
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCTO 3 -->
+
+            <div class="producto">
+
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80"
+                        alt="Hamburguesa de pollo">
+
+                </div>
+
+                <div class="producto-info">
+
+                    <h3>
+                        Hamburguesa de Pollo
+                    </h3>
+
+                    <p>
+                        Pollo crujiente, vegetales frescos
+                        y nuestra deliciosa salsa.
+                    </p>
+
+                    <div class="precio">
+                        Q35.00
+                    </div>
+
+                    <a
+                        href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                        target="_blank"
+                        class="btn-menu">
+
+                        Pedir en PedidosYa
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCTO 4 -->
+
+            <div class="producto">
+
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80"
+                        alt="Combo de pollo">
+
+                </div>
+
+                <div class="producto-info">
+
+                    <h3>
+                        Combo de Pollo
+                    </h3>
+
+                    <p>
+                        Una deliciosa combinación
+                        para disfrutar en grande.
+                    </p>
+
+                    <div class="precio">
+                        Q55.00
+                    </div>
+
+                    <a
+                        href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                        target="_blank"
+                        class="btn-menu">
+
+                        Pedir en PedidosYa
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCTO 5 -->
+
+            <div class="producto">
+
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                        alt="Papas fritas">
+
+                </div>
+
+                <div class="producto-info">
+
+                    <h3>
+                        Papas Fritas
+                    </h3>
+
+                    <p>
+                        Papas crujientes ideales
+                        para acompañar tu pedido.
+                    </p>
+
+                    <div class="precio">
+                        Q20.00
+                    </div>
+
+                    <a
+                        href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                        target="_blank"
+                        class="btn-menu">
+
+                        Pedir en PedidosYa
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCTO 6 -->
+
+            <div class="producto">
+
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=900&q=80"
+                        alt="Pollo con acompañamiento">
+
+                </div>
+
+                <div class="producto-info">
+
+                    <h3>
+                        Especial de la Casa
+                    </h3>
+
+                    <p>
+                        Una de nuestras opciones
+                        favoritas para compartir.
+                    </p>
+
+                    <div class="precio">
+                        Q60.00
+                    </div>
+
+                    <a
+                        href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                        target="_blank"
+                        class="btn-menu">
+
+                        Pedir en PedidosYa
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PEDIDOSYA
+    ========================================== -->
+
+    <section class="pedidos">
+
+        <div class="pedidos-contenido">
+
+            <h2>
+                ¿Se te antojó? 🍗
+            </h2>
+
+            <p>
+
+                No esperes más.
+
+                Pide tus favoritos de
+                <strong>El Gran Pollo Loco</strong>
+                directamente desde PedidosYa.
+
+            </p>
+
+
+            <a
+                href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
+                target="_blank"
+                class="btn-pedidosya">
+
+                🛵 PIDE AHORA EN PEDIDOSYA
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         UBICACIÓN
+    ========================================== -->
+
+    <section
+        class="ubicacion"
+        id="ubicacion">
+
+        <h2 class="titulo-seccion">
+            Encuéntranos 📍
+        </h2>
+
+        <p class="subtitulo">
+            Visítanos y disfruta de una locura de sabor
+        </p>
+
+
+        <div class="ubicacion-contenido">
+
+
+            <!-- MAPA -->
+
+            <iframe
+                class="mapa"
+                src="https://www.google.com/maps?q=14.6561456,-90.4786285&output=embed"
+                loading="lazy"
+                allowfullscreen>
+            </iframe>
+
+
+            <!-- INFORMACIÓN -->
+
+            <div class="info-ubicacion">
+
+                <h3>
+                    El Gran Pollo Loco
+                </h3>
+
+                <p>
+                    📍 Visítanos en nuestra ubicación.
+                </p>
+
+                <p>
+                    🍗 Disfruta nuestros deliciosos
+                    platillos preparados con mucho sabor.
+                </p>
+
+                <p>
+                    🛵 También puedes pedir desde
+                    PedidosYa.
+                </p>
+
+
+                <a
+                    href="https://maps.app.goo.gl/U1XZyGf9xhQfjwdH6"
+                    target="_blank"
+                    class="btn-mapa">
+
+                    📍 Abrir en Google Maps
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         CONTACTO
+    ========================================== -->
+
+    <section
+        class="contacto"
+        id="contacto">
+
+        <h2 class="titulo-seccion">
+            Contáctanos 📞
+        </h2>
+
+        <p class="subtitulo">
+            Estamos para atenderte
+        </p>
+
+
+        <div class="contacto-contenido">
+
+
+            <div class="contacto-card">
+
+                <h3>
+                    📞 Teléfono
+                </h3>
+
+                <p>
+                    Próximamente
+                </p>
+
+            </div>
+
+
+            <div class="contacto-card">
+
+                <h3>
+                    💬 WhatsApp
+                </h3>
+
+                <p>
+                    Próximamente
+                </p>
+
+            </div>
+
+
+            <div class="contacto-card">
+
+                <h3>
+                    🛵 Pedidos
+                </h3>
+
+                <p>
+                    Realiza tu pedido
+                    directamente en PedidosYa.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        <img
+            src="imagenes/LOGO.jpg"
+            alt="Logo El Gran Pollo Loco">
+
+        <h3>
+            El Gran Pollo Loco
+        </h3>
+
+        <p>
+            Una locura de sabor 🍗
+        </p>
+
+        <p>
+            © 2026 El Gran Pollo Loco
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
