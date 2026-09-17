@@ -300,6 +300,35 @@
             background: #fffdf4;
         }
 
+
+        /* ================= TITULOS DE CATEGORIAS DEL MENU ================= */
+
+        .categoria-menu {
+            margin-bottom: 42px;
+        }
+
+        .categoria-titulo {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .categoria-titulo h3 {
+            margin: 0 0 4px;
+            color: var(--verde-oscuro);
+            font-size: 28px;
+            line-height: 1.25;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .categoria-titulo p {
+            margin: 0;
+            color: #617066;
+            font-size: 17px;
+            line-height: 2.0;
+            text-align: center;
+        }
+
         .menu-grid {
             max-width: 1200px;
             margin: auto;
@@ -813,12 +842,7 @@
                 font-size: 29px;
             }
         }
-    
-        .mini-pedido { border:0; cursor:pointer; padding:10px 13px; border-radius:20px; background:var(--verde); color:white; font-weight:800; font-size:14px; }
-        .mini-pedido:hover { background:var(--amarillo); color:var(--verde-oscuro); }
-        .carrito-flotante { position:fixed; right:22px; bottom:22px; z-index:2000; background:var(--amarillo); color:var(--verde-oscuro); border:0; border-radius:50px; padding:14px 20px; font-weight:900; font-size:16px; cursor:pointer; box-shadow:0 7px 20px rgba(0,0,0,.25); }
-        .carrito-flotante:hover { transform:translateY(-2px); }
-</style>
+    </style>
 </head>
 
 <body>
@@ -1600,7 +1624,7 @@
             directamente por PedidosYa.
         </p>
 
-        <!--LINK DIRECTO DE PEDIDOSYA -->
+        <!-- REEMPLAZA ESTE ENLACE POR EL LINK DIRECTO DE PEDIDOSYA -->
         <a class="hero-btn"
            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
            target="_blank">
@@ -1661,13 +1685,13 @@
             <div class="contacto-card">
                 <div class="icono">📞</div>
                 <h3>Teléfono</h3>
-                <p>3148 2544</p>
+                <p>Agrega aquí el número del restaurante.</p>
             </div>
 
             <div class="contacto-card">
                 <div class="icono">💬</div>
                 <h3>WhatsApp</h3>
-                <p>3148 2544</p>
+                <p>Agrega aquí el WhatsApp del restaurante.</p>
             </div>
 
             <div class="contacto-card">
@@ -1901,13 +1925,5 @@
         mostrarNotaPago();
     </script>
 
-<button class="carrito-flotante" type="button" onclick="irAlCarrito()">🛒 Carrito (<span id="contador-carrito">0</span>)</button><script>
-const WHATSAPP_POLLO="50231482544";
-function obtenerCarrito(){try{return JSON.parse(localStorage.getItem("carritoPolloLoco"))||[]}catch(e){return[]}}
-function guardarCarrito(c){localStorage.setItem("carritoPolloLoco",JSON.stringify(c));actualizarContadorCarrito()}
-function agregarAlCarrito(b){const t=b.closest(".producto");if(!t)return;const nombre=t.querySelector("h3")?.textContent.trim()||"Producto",descripcion=t.querySelector("p")?.textContent.trim()||"",pt=t.querySelector(".precio")?.textContent||"Q 0.00",precio=parseFloat(pt.replace(/[^\d.]/g,""))||0;if(precio<=0){alert("Este producto todavía no tiene un precio configurado.");return}const c=obtenerCarrito(),x=c.find(i=>i.nombre===nombre);if(x)x.cantidad++;else c.push({nombre,descripcion,precio,cantidad:1});guardarCarrito(c);b.textContent="✓ Agregado";setTimeout(()=>b.textContent="🛒 Agregar al carrito",900)}
-function actualizarContadorCarrito(){const n=obtenerCarrito().reduce((a,i)=>a+i.cantidad,0),x=document.getElementById("contador-carrito");if(x)x.textContent=n}
-function irAlCarrito(){window.location.href="pago.html"}
-document.addEventListener("DOMContentLoaded",actualizarContadorCarrito);
-</script></body>
+</body>
 </html>
