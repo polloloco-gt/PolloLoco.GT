@@ -1895,7 +1895,7 @@
             const mensaje = `Hola, El Gran Pollo Loco. Quiero realizar este pedido:\n\n${detalleFinal}\n\nSubtotal: Q ${subtotal.toFixed(2)}\nEnvío: Q ${envio.toFixed(2)}\nTOTAL: Q ${total.toFixed(2)}\n\nCliente: ${nombre}\nEntrega: ${entrega === 'envio' ? 'Envío' : 'Retiro en local'}${entrega === 'envio' ? `\nDirección: ${direccion}` : ''}\nPago: ${pago}`;
 
             // Reemplazar este número por el WhatsApp oficial del restaurante.
-            const whatsapp = '502 3148 2544';
+            const whatsapp = '50231482544';
             const url = `https://wa.me/${whatsapp}?text=${encodeURIComponent(mensaje)}`;
             window.open(url, '_blank');
         }
