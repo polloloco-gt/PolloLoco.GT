@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pago | El Gran Pollo Loco</title>
+<style>
+:root{--verde:#087a3d;--verde-oscuro:#045d2d;--amarillo:#ffd21c;--naranja:#f28b00;--blanco:#fffdf5;--texto:#193322}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--blanco);color:var(--texto)}
+.contenedor{width:min(900px,92%);margin:40px auto}.cabecera{text-align:center;margin-bottom:25px}.cabecera img{width:90px;height:90px;object-fit:cover;border-radius:50%;border:4px solid var(--verde)}h1{color:var(--verde);margin:12px 0 5px}.sub{color:#617066}
+.tarjeta{background:white;border-radius:20px;padding:25px;box-shadow:0 8px 25px rgba(0,0,0,.12);margin-bottom:20px}h2{color:var(--verde);margin-top:0}.fila{display:flex;justify-content:space-between;gap:15px;padding:9px 0;border-bottom:1px solid #e8ece4}.total{font-size:24px;font-weight:900;color:var(--verde);border-bottom:0;padding-top:16px}.nota{padding:15px;background:#f1f7ed;border-radius:12px;line-height:1.5}.advertencia{padding:15px;background:#fff7df;border-left:5px solid var(--amarillo);border-radius:10px;line-height:1.5}.boton{display:inline-block;border:0;border-radius:28px;padding:14px 20px;font-weight:900;cursor:pointer;text-decoration:none}.principal{background:var(--verde);color:white}.secundario{background:#eef1eb;color:var(--verde-oscuro)}.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.bank{display:none}.bank.visible{display:block}.confirmado{display:none;text-align:center}.confirmado.visible{display:block}.ok{font-size:48px}
+</style>
+</head>
+<body>
+<div class="contenedor">
+  <div class="cabecera">
+    <img src="imagenes/LOGO.jpg" alt="El Gran Pollo Loco">
+    <h1>Finalizar pedido</h1>
+    <div class="sub">El Gran Pollo Loco</div>
+  </div>
+
+  <div class="tarjeta">
+    <h2>Resumen del pedido</h2>
+    <div id="resumen"></div>
+    <div class="fila"><span>Subtotal</span><strong id="subtotal">Q 0.00</strong></div>
+    <div class="fila"><span>Envío</span><strong id="envio">Q 0.00</strong></div>
+    <div class="fila total"><span>Total</span><strong id="total">Q 0.00</strong></div>
+  </div>
+
+  <div class="tarjeta" id="pagoTarjeta">
+    <h2>💳 Pago con tarjeta</h2>
+    <div class="advertencia"><strong>Pago seguro:</strong> no introduzcas aquí el número de tu tarjeta. Para un cobro real se debe conectar una pasarela de pago segura del restaurante (por ejemplo, Stripe, PayPal u otro proveedor), que sea quien procese los datos de la tarjeta.</div>
+    <p>Esta página ya está preparada para mostrar el pedido y el total. Cuando el restaurante tenga configurado su proveedor de pagos, el botón siguiente deberá abrir su checkout seguro.</p>
+    <div class="acciones">
+      <button class="boton principal" type="button" onclick="abrirPagoSeguro()">Continuar al pago seguro</button>
+      <a class="boton secundario" href="index.html">Volver al menú</a>
+    </div>
+  </div>
+
+  <div class="tarjeta" id="pagoTransferencia">
+    <h2>🏦 Pago por transferencia</h2>
+    <div class="nota"><strong>Datos bancarios:</strong><br><br>Banco: PENDIENTE DE CONFIGURAR<br>Cuenta: PENDIENTE DE CONFIGURAR<br>Nombre: El Gran Pollo Loco<br><br>Estos datos deben sustituirse por los datos bancarios oficiales del restaurante.</div>
+    <p>Después de que el restaurante verifique la transferencia, el pedido puede enviarse a WhatsApp como <strong>pagado por transferencia</strong>.</p>
+    <button class="boton principal" type="button" onclick="enviarTransferenciaWhatsApp()">Enviar confirmación a WhatsApp</button>
+  </div>
+
+  <div class="tarjeta">
+    <h2>💵 Pago en efectivo</h2>
+    <p>Si elegiste efectivo, el pedido puede retirarse en el local o pagarse al recibirlo si seleccionaste envío.</p>
+    <button class="boton principal" type="button" onclick="enviarEfectivoWhatsApp()">Enviar pedido a WhatsApp</button>
+  </div>
+
+  <div class="tarjeta confirmado" id="confirmado">
+    <div class="ok">✅</div>
+    <h2>Pago confirmado</h2>
+    <p>Cuando el proveedor de pagos confirme el cobro, esta sección puede utilizarse para enviar automáticamente el pedido pagado al WhatsApp del restaurante.</p>
+  </div>
+</div>
+<script>
+const pedido=JSON.parse(localStorage.getItem('pedidoGranPolloLoco')||'null');
+const WHATSAPP='50231482544'; // Sustituir por el WhatsApp oficial del restaurante.
+function dinero(n){return `Q ${Number(n||0).toFixed(2)}`}
+function cargar(){
+ if(!pedido){document.getElementById('resumen').innerHTML='<p>No hay un pedido guardado. Regresa al menú y agrega productos.</p>';return;}
+ document.getElementById('resumen').innerHTML=pedido.items.map(i=>`<div class="fila"><span>${esc(i.nombre)} × ${i.cantidad}</span><strong>${dinero(i.precio*i.cantidad)}</strong></div>`).join('')+`<p><strong>Cliente:</strong> ${esc(pedido.nombre)}<br><strong>Entrega:</strong> ${pedido.entrega==='envio'?'Envío':'Retiro en local'}${pedido.entrega==='envio'?`<br><strong>Dirección:</strong> ${esc(pedido.direccion)}`:''}</p>`;
+ document.getElementById('subtotal').textContent=dinero(pedido.subtotal);document.getElementById('envio').textContent=dinero(pedido.envio);document.getElementById('total').textContent=dinero(pedido.total);
+ document.getElementById('pagoTarjeta').style.display=pedido.pago==='tarjeta'?'block':'none';
+ document.getElementById('pagoTransferencia').style.display=pedido.pago==='transferencia'?'block':'none';
+}
+function esc(t){const d=document.createElement('div');d.textContent=t||'';return d.innerHTML}
+function mensaje(estado){
+ const detalle=pedido.items.map(i=>`• ${i.nombre} x${i.cantidad} = ${dinero(i.precio*i.cantidad)}`).join('\n');
+ return `Hola, El Gran Pollo Loco.\n\nPEDIDO ${estado}\n\n${detalle}\n\nSubtotal: ${dinero(pedido.subtotal)}\nEnvío: ${dinero(pedido.envio)}\nTOTAL: ${dinero(pedido.total)}\n\nCliente: ${pedido.nombre}\nEntrega: ${pedido.entrega==='envio'?'Envío':'Retiro en local'}${pedido.entrega==='envio'?`\nDirección: ${pedido.direccion}`:''}\nPago: ${pedido.pago}`;
+}
+function abrirPagoSeguro(){alert('Aquí debe conectarse el checkout oficial de la pasarela de pago del restaurante. No se deben pedir ni guardar los datos de tarjeta directamente en este sitio.');}
+function enviarTransferenciaWhatsApp(){window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje('— TRANSFERENCIA PENDIENTE DE VERIFICACIÓN —'))}`,'_blank')}
+function enviarEfectivoWhatsApp(){window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje('— PAGO EN EFECTIVO —'))}`,'_blank')}
+cargar();
+</script>
+</body></html>
