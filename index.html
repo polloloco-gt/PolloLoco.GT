@@ -395,6 +395,227 @@
             color: var(--verde-oscuro);
         }
 
+
+        /* ================= CARRITO ================= */
+        .carrito-btn {
+            position: relative;
+            border: 0;
+            cursor: pointer;
+            background: var(--amarillo);
+            color: var(--verde-oscuro);
+            padding: 12px 18px;
+            border-radius: 25px;
+            font-weight: 900;
+            font-size: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,.18);
+        }
+
+        .carrito-contador {
+            position: absolute;
+            top: -8px;
+            right: -7px;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 5px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--naranja);
+            color: white;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .mini-pedido {
+            border: 0;
+            cursor: pointer;
+        }
+
+        .carrito-panel {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            background: rgba(0,0,0,.55);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .carrito-panel.activo { display: flex; }
+
+        .carrito-contenido {
+            width: min(720px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 18px 50px rgba(0,0,0,.3);
+        }
+
+        .carrito-cabecera {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .carrito-cabecera h2 { color: var(--verde); }
+
+        .cerrar-carrito {
+            border: 0;
+            background: #eef1eb;
+            color: var(--verde-oscuro);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .carrito-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #e7eadf;
+        }
+
+        .carrito-item strong { color: var(--verde); }
+
+        .cantidad-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cantidad-control button {
+            width: 28px;
+            height: 28px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--verde);
+            color: white;
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        .eliminar-item {
+            border: 0;
+            background: transparent;
+            color: #b33a2e;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .carrito-resumen {
+            margin-top: 20px;
+            padding: 18px;
+            background: #fffdf4;
+            border-radius: 15px;
+        }
+
+        .fila-total {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+
+        .fila-total.final {
+            padding-top: 12px;
+            border-top: 2px solid #e5e8dc;
+            font-size: 21px;
+            font-weight: 900;
+            color: var(--verde);
+        }
+
+        .pedido-form {
+            margin-top: 22px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .pedido-form label {
+            font-weight: 800;
+            color: var(--verde-oscuro);
+        }
+
+        .pedido-form input,
+        .pedido-form textarea,
+        .pedido-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d9dfd4;
+            border-radius: 10px;
+            font: inherit;
+        }
+
+        .tipo-entrega {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .tipo-entrega label {
+            padding: 13px;
+            border: 2px solid #e2e6dc;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .tipo-entrega input { width: auto; margin-right: 5px; }
+
+        .metodos-pago {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .metodo-pago {
+            padding: 12px;
+            border: 2px solid #e2e6dc;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .metodo-pago input { margin-right: 5px; }
+
+        .pago-nota {
+            padding: 13px;
+            border-radius: 10px;
+            background: #f2f7ef;
+            color: #43564a;
+            font-size: 14px;
+        }
+
+        .finalizar-pedido {
+            width: 100%;
+            border: 0;
+            cursor: pointer;
+            margin-top: 8px;
+            padding: 15px;
+            border-radius: 28px;
+            background: var(--verde);
+            color: white;
+            font-size: 17px;
+            font-weight: 900;
+        }
+
+        .finalizar-pedido:hover { background: var(--verde-oscuro); }
+
+        @media (max-width: 700px) {
+            .carrito-item { grid-template-columns: 1fr auto; }
+            .metodos-pago { grid-template-columns: 1fr; }
+            .tipo-entrega { grid-template-columns: 1fr; }
+        }
+
         /* ================= PEDIDOS ================= */
 
         .pedidos {
@@ -592,7 +813,12 @@
                 font-size: 29px;
             }
         }
-    </style>
+    
+        .mini-pedido { border:0; cursor:pointer; padding:10px 13px; border-radius:20px; background:var(--verde); color:white; font-weight:800; font-size:14px; }
+        .mini-pedido:hover { background:var(--amarillo); color:var(--verde-oscuro); }
+        .carrito-flotante { position:fixed; right:22px; bottom:22px; z-index:2000; background:var(--amarillo); color:var(--verde-oscuro); border:0; border-radius:50px; padding:14px 20px; font-weight:900; font-size:16px; cursor:pointer; box-shadow:0 7px 20px rgba(0,0,0,.25); }
+        .carrito-flotante:hover { transform:translateY(-2px); }
+</style>
 </head>
 
 <body>
@@ -611,7 +837,12 @@
             <li><a href="#ubicacion">📍 Ubicación</a></li>
             <li><a href="#contacto">📞 Contacto</a></li>
             <li>
-                <!-- REEMPLAZA ESTE ENLACE POR EL LINK DIRECTO DE PEDIDOSYA -->
+                <button class="carrito-btn" type="button" onclick="abrirCarrito()">
+                    🛒 Carrito <span class="carrito-contador" id="carritoContador">0</span>
+                </button>
+            </li>
+            <li>
+                <!-- PEDIDOSYA SE CONSERVA COMO OPCIÓN EXTERNA -->
                 <a class="btn-pedidosya"
                    href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
                    target="_blank">
@@ -741,15 +972,9 @@
                         <span class="precio">
                             Q 40.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -779,15 +1004,9 @@
                         <span class="precio">
                             Q 37.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -817,15 +1036,9 @@
                         <span class="precio">
                             Q 37.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -855,15 +1068,9 @@
                         <span class="precio">
                             Q 63.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -918,15 +1125,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -956,15 +1157,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -994,15 +1189,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1056,15 +1245,9 @@
                         <span class="precio">
                             Q 113.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1119,15 +1302,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1157,15 +1334,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1220,15 +1391,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1258,15 +1423,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1319,15 +1478,9 @@
                         <span class="precio">
                             Q 20.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1357,15 +1510,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1395,15 +1542,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1433,15 +1574,9 @@
                         <span class="precio">
                             Q XX.00
                         </span>
-
-                        <a
-                            class="mini-pedido"
-                            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
-                            target="_blank">
-
-                            Pedir
-
-                        </a>
+                        <button class="mini-pedido" type="button" onclick="agregarAlCarrito(this)">
+                            🛒 Agregar
+                        </button>
 
                     </div>
 
@@ -1465,7 +1600,7 @@
             directamente por PedidosYa.
         </p>
 
-        <!-- REEMPLAZA ESTE ENLACE POR EL LINK DIRECTO DE PEDIDOSYA -->
+        <!--LINK DIRECTO DE PEDIDOSYA -->
         <a class="hero-btn"
            href="https://www.pedidosya.com.gt/restaurantes/ciudad-de-guatemala/el-gran-pollo-loco-9269e308-aa25-453f-909a-32ff4a63ff53-menu?origin=shop_list"
            target="_blank">
@@ -1526,13 +1661,13 @@
             <div class="contacto-card">
                 <div class="icono">📞</div>
                 <h3>Teléfono</h3>
-                <p>Agrega aquí el número del restaurante.</p>
+                <p>3148 2544</p>
             </div>
 
             <div class="contacto-card">
                 <div class="icono">💬</div>
                 <h3>WhatsApp</h3>
-                <p>Agrega aquí el WhatsApp del restaurante.</p>
+                <p>3148 2544</p>
             </div>
 
             <div class="contacto-card">
@@ -1553,5 +1688,226 @@
         <p>© 2026 El Gran Pollo Loco</p>
     </footer>
 
-</body>
+
+    <!-- ================= CARRITO Y CHECKOUT ================= -->
+    <div class="carrito-panel" id="carritoPanel" onclick="cerrarCarritoSiFondo(event)">
+        <div class="carrito-contenido" onclick="event.stopPropagation()">
+            <div class="carrito-cabecera">
+                <h2>🛒 Tu pedido</h2>
+                <button class="cerrar-carrito" type="button" onclick="cerrarCarrito()">×</button>
+            </div>
+
+            <div id="carritoLista"></div>
+
+            <div class="carrito-resumen">
+                <div class="fila-total"><span>Subtotal</span><strong id="subtotalCarrito">Q 0.00</strong></div>
+                <div class="fila-total"><span>Envío</span><strong id="envioCarrito">Q 0.00</strong></div>
+                <div class="fila-total final"><span>Total</span><strong id="totalCarrito">Q 0.00</strong></div>
+            </div>
+
+            <form class="pedido-form" id="pedidoForm" onsubmit="finalizarPedido(event)">
+                <label for="nombreCliente">Nombre</label>
+                <input id="nombreCliente" required placeholder="Nombre para el pedido">
+
+                <label>¿Cómo deseas recibirlo?</label>
+                <div class="tipo-entrega">
+                    <label><input type="radio" name="entrega" value="local" checked onchange="actualizarCarrito()"> 🏪 Retirar en el local</label>
+                    <label><input type="radio" name="entrega" value="envio" onchange="actualizarCarrito()"> 🛵 Envío (+ Q10.00)</label>
+                </div>
+
+                <div id="direccionBox" style="display:none">
+                    <label for="direccionCliente">Dirección de entrega</label>
+                    <textarea id="direccionCliente" rows="3" placeholder="Dirección donde deseas recibir el pedido"></textarea>
+                </div>
+
+                <label>Método de pago</label>
+                <div class="metodos-pago">
+                    <label class="metodo-pago"><input type="radio" name="pago" value="efectivo" checked onchange="mostrarNotaPago()"> 💵 Efectivo</label>
+                    <label class="metodo-pago"><input type="radio" name="pago" value="transferencia" onchange="mostrarNotaPago()"> 🏦 Transferencia</label>
+                    <label class="metodo-pago"><input type="radio" name="pago" value="tarjeta" onchange="mostrarNotaPago()"> 💳 Tarjeta</label>
+                </div>
+
+                <div class="pago-nota" id="pagoNota">
+                    Pagarás en efectivo al recibir o retirar tu pedido.
+                </div>
+
+                <button class="finalizar-pedido" type="submit">Continuar con el pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const carrito = [];
+        const COSTO_ENVIO = 10;
+
+        function agregarAlCarrito(boton) {
+            const producto = boton.closest('.producto');
+            const nombre = producto.querySelector('h3').textContent.trim();
+            const precioTexto = producto.querySelector('.precio').textContent.replace('Q', '').trim();
+            const precio = parseFloat(precioTexto.replace(',', ''));
+
+            if (!Number.isFinite(precio)) {
+                alert('Este producto todavía no tiene un precio configurado.');
+                return;
+            }
+
+            const existente = carrito.find(item => item.nombre === nombre);
+            if (existente) existente.cantidad++;
+            else carrito.push({ nombre, precio, cantidad: 1 });
+
+            actualizarCarrito();
+            abrirCarrito();
+        }
+
+        function cambiarCantidad(index, cambio) {
+            carrito[index].cantidad += cambio;
+            if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
+            actualizarCarrito();
+        }
+
+        function eliminarItem(index) {
+            carrito.splice(index, 1);
+            actualizarCarrito();
+        }
+
+        function obtenerEntrega() {
+            return document.querySelector('input[name="entrega"]:checked')?.value || 'local';
+        }
+
+        function calcularSubtotal() {
+            return carrito.reduce((total, item) => total + item.precio * item.cantidad, 0);
+        }
+
+        function actualizarCarrito() {
+            const lista = document.getElementById('carritoLista');
+            const contador = document.getElementById('carritoContador');
+            const subtotal = calcularSubtotal();
+            const envio = obtenerEntrega() === 'envio' && carrito.length ? COSTO_ENVIO : 0;
+            const total = subtotal + envio;
+
+            contador.textContent = carrito.reduce((n, item) => n + item.cantidad, 0);
+            document.getElementById('subtotalCarrito').textContent = `Q ${subtotal.toFixed(2)}`;
+            document.getElementById('envioCarrito').textContent = `Q ${envio.toFixed(2)}`;
+            document.getElementById('totalCarrito').textContent = `Q ${total.toFixed(2)}`;
+
+            const direccionBox = document.getElementById('direccionBox');
+            direccionBox.style.display = obtenerEntrega() === 'envio' ? 'block' : 'none';
+            document.getElementById('direccionCliente').required = obtenerEntrega() === 'envio';
+
+            if (!carrito.length) {
+                lista.innerHTML = '<p style="text-align:center;padding:20px">Tu carrito está vacío. Agrega productos del menú.</p>';
+                return;
+            }
+
+            lista.innerHTML = carrito.map((item, index) => `
+                <div class="carrito-item">
+                    <strong>${escaparHTML(item.nombre)}</strong>
+                    <span>Q ${(item.precio * item.cantidad).toFixed(2)}</span>
+                    <div class="cantidad-control">
+                        <button type="button" onclick="cambiarCantidad(${index}, -1)">−</button>
+                        <span>${item.cantidad}</span>
+                        <button type="button" onclick="cambiarCantidad(${index}, 1)">+</button>
+                    </div>
+                    <button class="eliminar-item" type="button" onclick="eliminarItem(${index})">🗑️</button>
+                </div>
+            `).join('');
+        }
+
+        function mostrarNotaPago() {
+            const metodo = document.querySelector('input[name="pago"]:checked')?.value;
+            const nota = document.getElementById('pagoNota');
+            if (metodo === 'efectivo') {
+                nota.textContent = 'Pagarás en efectivo al retirar o recibir el pedido.';
+            } else if (metodo === 'transferencia') {
+                nota.textContent = 'Al continuar se mostrarán los datos bancarios del restaurante. No coloques datos bancarios sensibles en este código; aquí se deben configurar los datos oficiales del negocio.';
+            } else {
+                nota.textContent = 'El pago con tarjeta debe realizarse mediante una pasarela de pago segura (por ejemplo, Stripe, PayPal o el proveedor que use el restaurante). No es recomendable guardar números de tarjeta directamente en esta página.';
+            }
+        }
+
+        function finalizarPedido(event) {
+            event.preventDefault();
+            if (!carrito.length) {
+                alert('Agrega al menos un producto al carrito.');
+                return;
+            }
+
+            const nombre = document.getElementById('nombreCliente').value.trim();
+            const entrega = obtenerEntrega();
+            const direccion = document.getElementById('direccionCliente').value.trim();
+            const pago = document.querySelector('input[name="pago"]:checked')?.value;
+            const subtotal = calcularSubtotal();
+            const envio = entrega === 'envio' ? COSTO_ENVIO : 0;
+            const total = subtotal + envio;
+
+            const detalle = carrito.map(item => `• ${item.nombre} x${item.cantidad} = Q ${(item.precio * item.cantidad).toFixed(2)}`).join('\n');
+
+            const pedido = {
+                items: carrito,
+                nombre,
+                entrega,
+                direccion,
+                pago,
+                subtotal,
+                envio,
+                total,
+                detalle,
+                creado: new Date().toISOString()
+            };
+            localStorage.setItem('pedidoGranPolloLoco', JSON.stringify(pedido));
+
+            if (pago === 'tarjeta') {
+                window.location.href = 'pago.html';
+                return;
+            }
+
+            if (pago === 'transferencia') {
+                alert('Tu pedido quedó preparado para transferencia. En la página de pago se deben configurar los datos bancarios oficiales y la confirmación antes de marcarlo como pagado.');
+                window.location.href = 'pago.html';
+                return;
+            }
+
+            const detalleFinal = detalle;
+            const mensaje = `Hola, El Gran Pollo Loco. Quiero realizar este pedido:\n\n${detalleFinal}\n\nSubtotal: Q ${subtotal.toFixed(2)}\nEnvío: Q ${envio.toFixed(2)}\nTOTAL: Q ${total.toFixed(2)}\n\nCliente: ${nombre}\nEntrega: ${entrega === 'envio' ? 'Envío' : 'Retiro en local'}${entrega === 'envio' ? `\nDirección: ${direccion}` : ''}\nPago: ${pago}`;
+
+            // Reemplazar este número por el WhatsApp oficial del restaurante.
+            const whatsapp = '502XXXXXXXX';
+            const url = `https://wa.me/${whatsapp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        function escaparHTML(texto) {
+            const div = document.createElement('div');
+            div.textContent = texto;
+            return div.innerHTML;
+        }
+
+        function abrirCarrito() {
+            document.getElementById('carritoPanel').classList.add('activo');
+            actualizarCarrito();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarCarrito() {
+            document.getElementById('carritoPanel').classList.remove('activo');
+            document.body.style.overflow = '';
+        }
+
+        function cerrarCarritoSiFondo(event) {
+            if (event.target.id === 'carritoPanel') cerrarCarrito();
+        }
+
+        actualizarCarrito();
+        mostrarNotaPago();
+    </script>
+
+<button class="carrito-flotante" type="button" onclick="irAlCarrito()">🛒 Carrito (<span id="contador-carrito">0</span>)</button><script>
+const WHATSAPP_POLLO="50231482544";
+function obtenerCarrito(){try{return JSON.parse(localStorage.getItem("carritoPolloLoco"))||[]}catch(e){return[]}}
+function guardarCarrito(c){localStorage.setItem("carritoPolloLoco",JSON.stringify(c));actualizarContadorCarrito()}
+function agregarAlCarrito(b){const t=b.closest(".producto");if(!t)return;const nombre=t.querySelector("h3")?.textContent.trim()||"Producto",descripcion=t.querySelector("p")?.textContent.trim()||"",pt=t.querySelector(".precio")?.textContent||"Q 0.00",precio=parseFloat(pt.replace(/[^\d.]/g,""))||0;if(precio<=0){alert("Este producto todavía no tiene un precio configurado.");return}const c=obtenerCarrito(),x=c.find(i=>i.nombre===nombre);if(x)x.cantidad++;else c.push({nombre,descripcion,precio,cantidad:1});guardarCarrito(c);b.textContent="✓ Agregado";setTimeout(()=>b.textContent="🛒 Agregar al carrito",900)}
+function actualizarContadorCarrito(){const n=obtenerCarrito().reduce((a,i)=>a+i.cantidad,0),x=document.getElementById("contador-carrito");if(x)x.textContent=n}
+function irAlCarrito(){window.location.href="pago.html"}
+document.addEventListener("DOMContentLoaded",actualizarContadorCarrito);
+</script></body>
 </html>
